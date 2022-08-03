@@ -38,7 +38,10 @@ class GildedRoseTest  extends AnyWordSpec with Matchers {
         app.items(0).quality should equal (50)
       }
       "increases quality only by 1 if quality is 49 and sellIn is 0 or less" in {
-
+        val items = Array[Item](new Item("Aged Brie", 0, 49))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).quality should equal (50)
       }
 
     }
