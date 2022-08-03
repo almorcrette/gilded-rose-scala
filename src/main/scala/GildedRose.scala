@@ -2,6 +2,77 @@
 
 class GildedRose(val items: Array[Item]) {
 
+  def updateQuality() {
+    for (i <- 0 until items.length) {
+      var item = items(i)
+      item.name match {
+
+        case "Conjured item" =>
+          updateConjuredItem(item)
+
+        case "Aged Brie" =>
+          updateAgedBrie(item)
+
+        case "Backstage passes to a TAFKAL80ETC concert" =>
+          updateBackstagePass(item)
+
+        case "Sulfuras, Hand of Ragnaros" =>
+          updateSulfuras(item)
+
+        case _ =>
+          updateOtherItems(item)
+
+      }
+    }
+  }
+
+  // Methods to update item by item category
+
+  private def updateConjuredItem(item: Item): Unit = {
+    reduceQuality(item)
+    reduceQuality(item)
+    if (!isInDate(item)) {
+      reduceQuality(item)
+      reduceQuality(item)
+    }
+    reduceSellIn(item)
+  }
+
+  private def updateAgedBrie(item: Item): Unit = {
+    increaseQuality(item)
+    if (!isInDate(item)) {
+      increaseQuality(item)
+    }
+    reduceSellIn(item)
+  }
+
+  private def updateBackstagePass(item: Item): Unit = {
+    if (!isInDate(item)) {
+      item.quality = 0
+    } else {
+      increaseQuality(item)
+      if (item.sellIn <= 10) {
+        increaseQuality(item)
+      }
+      if (item.sellIn <= 5) {
+        increaseQuality(item)
+      }
+    }
+    reduceSellIn(item)
+  }
+
+  private def updateSulfuras(item: Item): Unit = {}
+
+  private def updateOtherItems(item: Item): Unit = {
+    reduceQuality(item)
+    if (!isInDate(item)) {
+      reduceQuality(item)
+    }
+    reduceSellIn(item)
+  }
+
+  // Fundamental process methods
+
   private def isInDate(item: Item): Boolean = {
     item.sellIn >= 1
   }
@@ -22,51 +93,4 @@ class GildedRose(val items: Array[Item]) {
     }
   }
 
-
-  def updateQuality() {
-    for (i <- 0 until items.length) {
-      var item = items(i)
-      item.name match {
-
-        case "Conjured item" =>
-          reduceQuality(item)
-          reduceQuality(item)
-          if (!isInDate(item)) {
-            reduceQuality(item)
-            reduceQuality(item)
-          }
-          reduceSellIn(item)
-
-        case "Aged Brie" =>
-          increaseQuality(item)
-          if (!isInDate(item)) {
-            increaseQuality(item)
-          }
-          reduceSellIn(item)
-
-        case "Backstage passes to a TAFKAL80ETC concert" =>
-          if (!isInDate(item)) {
-            item.quality = 0
-          } else {
-            increaseQuality(item)
-            if (item.sellIn <= 10) {
-              increaseQuality(item)
-            }
-            if (item.sellIn <= 5) {
-              increaseQuality(item)
-            }
-          }
-          reduceSellIn(item)
-
-        case "Sulfuras, Hand of Ragnaros" =>
-
-        case _ =>
-          reduceQuality(item)
-          if (!isInDate(item)) {
-            reduceQuality(item)
-          }
-          reduceSellIn(item)
-      }
-    }
-  }
 }
