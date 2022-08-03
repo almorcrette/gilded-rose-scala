@@ -1,8 +1,8 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
+name := "GildedRose"
 
-ThisBuild / scalaVersion := "2.13.8"
+version := "1.0"
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "guilded-rose-scala"
-  )
+scalaVersion := "2.13.1"
+
+resolvers += DefaultMavenRepository
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.1" % "test"
