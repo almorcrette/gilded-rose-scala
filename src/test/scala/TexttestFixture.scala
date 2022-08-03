@@ -1,4 +1,4 @@
-package com.gildedrose
+//package com.gildedrose
 
 object TexttestFixture {
   def main(args: Array[String]): Unit = {
