@@ -99,8 +99,45 @@ class GildedRoseTest  extends AnyWordSpec with Matchers {
         app.items(0).quality should equal(80)
       }
     }
+    "operating on other items" should {
+      "reduce its sellIn by 1" in {
+        val items = Array[Item](new Item("Other item", 15, 20))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).sellIn should equal(14)
+      }
+      "reduce its quality by 1 if quality at least 1 when sellIn at least 1" in {
+        val items = Array[Item](new Item("Other item", 15, 20))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).quality should equal(19)
+      }
+      "reduce its quality by 2 if quality at least 2 when sellIn at 0 or less" in {
+        val items = Array[Item](new Item("Other item", 0, 20))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).quality should equal(18)
+      }
+      "does not reduce quality if quality is already at 0 (regardless of sellIn)" in {
+        val items = Array[Item](
+          new Item("Other item", 15, 0),
+          new Item("Another item", 0, 0)
+        )
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).quality should equal(0)
+        app.items(1).quality should equal(0)
+      }
+      "reduces quality by 1 if quality is 1 when sellIn is 0 or less" in {
+        val items = Array[Item](new Item("Other item", 0, 1))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).quality should equal(0)
+      }
+    }
 
-//    "operating on conjured items" should {
+
+      //    "operating on conjured items" should {
 //      "reduce its sellIn by 1" in {
 //        val items = Array[Item](new Item("Conjured item", 15, 20))
 //        val app = new GildedRose(items)
