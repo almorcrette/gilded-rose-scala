@@ -1,6 +1,6 @@
 package com.gildedrose
 
-import org.scalatest.flatspec.AnyFlatSpec
+//import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -20,7 +20,10 @@ class GildedRoseTest  extends AnyWordSpec with Matchers {
         app.items(0).sellIn should equal (9)
       }
       "increases in quality by 1 (up to max 50) while sellIn is at least 1" in {
-
+        val items = Array[Item](new Item("Aged Brie", 10, 20))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).quality should equal (21)
       }
       "increase in quality by 2 (up to max 50) when sellIn is 0 or less" in {
 
