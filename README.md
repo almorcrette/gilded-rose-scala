@@ -63,6 +63,13 @@ val shop = new GildedRose(items)
 
 Then update the quality of the items day-by-day with:`shop.updateQuality()`
 
+You can take a look at how the items are evolving with:
+
+```
+shop.items.foreach (item => println(Set(item.name, item.sellIn, item.quality)))
+```
+
+
 ### Running tests
 
 `sbt test`
