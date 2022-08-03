@@ -58,6 +58,8 @@ class GildedRose(val items: Array[Item]) {
           }
           reduceSellIn(item)
 
+        case "Sulfuras, Hand of Ragnaros" =>
+
         case _ =>
           if (!items(i).name.equals("Aged Brie")
             && !items(i).name.equals("Backstage passes to a TAFKAL80ETC concert")) {
