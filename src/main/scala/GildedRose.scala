@@ -1,4 +1,4 @@
-package com.gildedrose
+//package com.gildedrose
 
 class GildedRose(val items: Array[Item]) {
 

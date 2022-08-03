@@ -1,4 +1,4 @@
-package com.gildedrose
+//package com.gildedrose
 
 //import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.wordspec.AnyWordSpec
