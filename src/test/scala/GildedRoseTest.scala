@@ -82,5 +82,19 @@ class GildedRoseTest  extends AnyWordSpec with Matchers {
         app.items(0).quality should equal(0)
       }
     }
+    "operating on Sulfuras" should {
+      "does not change sellIn" in {
+        val items = Array[Item](new Item("Sulfuras, Hand of Ragnaros", 15, 80))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).sellIn should equal(15)
+      }
+      "does not change quality" in {
+        val items = Array[Item](new Item("Sulfuras, Hand of Ragnaros", 15, 80))
+        val app = new GildedRose(items)
+        app.updateQuality()
+        app.items(0).quality should equal(80)
+      }
+    }
   }
 }
