@@ -33,14 +33,14 @@ Just for clarification, an item can never have its Quality increase above 50, ho
 
 ### Get started (installing the code)
 
-- How to install it (what to clone, what to run to get all dependencies)
+Clone the repo locally: `git clone https://github.com/almorcrette/gilded-rose-scala.git`
 
 ### Usage (executing the program)
 
-- How to run it (is it a command line tool? Do you have to load it into IRB? Is it a web application?
+The code is not set up to run.
 
 ### Running tests
 
-- How to run the tests
+`sbt test`
 
 ## About the code
