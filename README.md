@@ -37,7 +37,31 @@ Clone the repo locally: `git clone https://github.com/almorcrette/gilded-rose-sc
 
 ### Usage (executing the program)
 
-The code is not set up to run.
+First compile:
+
+`sbt compile`
+
+Then launch the REPL loading the program:
+
+`scala -classpath target/scala-2.13/classes`
+
+From within the REPL, you can explore the functionality. For example:
+
+Set up the shop with some items:
+
+```
+val items = Array[Item](
+    new Item("other item", 15, 20),
+    new Item("Aged Brie", 15, 20),
+    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+    new Item("Sulfuras, Hand of Ragnaros", 15, 20),
+    new Item("Conjured item", 15, 20)
+    )
+    
+val shop = new GildedRose(items)
+```
+
+Then update the quality of the items day-by-day with:`shop.updateQuality()`
 
 ### Running tests
 
