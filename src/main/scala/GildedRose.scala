@@ -16,11 +16,18 @@ class GildedRose(val items: Array[Item]) {
     item.sellIn -= 1
   }
 
+  private def increaseQuality(item: Item): Unit = {
+    if (item.quality <= 49) {
+      item.quality += 1
+    }
+  }
+
 
   def updateQuality() {
     for (i <- 0 until items.length) {
       var item = items(i)
       item.name match {
+
         case "Conjured item" =>
           reduceQuality(item)
           reduceQuality(item)
@@ -29,6 +36,14 @@ class GildedRose(val items: Array[Item]) {
             reduceQuality(item)
           }
           reduceSellIn(item)
+
+        case "Aged Brie" =>
+          increaseQuality(item)
+          if (!isInDate(item)) {
+            increaseQuality(item)
+          }
+          reduceSellIn(item)
+
         case _ =>
           if (!items(i).name.equals("Aged Brie")
             && !items(i).name.equals("Backstage passes to a TAFKAL80ETC concert")) {
