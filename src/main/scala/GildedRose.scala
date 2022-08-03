@@ -2,9 +2,9 @@
 
 class GildedRose(val items: Array[Item]) {
 
-  def updateQuality() {
-    for (i <- 0 until items.length) {
-      var item = items(i)
+  def updateQuality(): Unit = {
+    for (i <- items.indices) {
+      val item = items(i)
       item.name match {
 
         case "Conjured item" =>
@@ -17,7 +17,7 @@ class GildedRose(val items: Array[Item]) {
           updateBackstagePass(item)
 
         case "Sulfuras, Hand of Ragnaros" =>
-          updateSulfuras(item)
+          updateSulfuras()
 
         case _ =>
           updateOtherItems(item)
@@ -61,7 +61,7 @@ class GildedRose(val items: Array[Item]) {
     reduceSellIn(item)
   }
 
-  private def updateSulfuras(item: Item): Unit = {}
+  private def updateSulfuras(): Unit = {}
 
   private def updateOtherItems(item: Item): Unit = {
     reduceQuality(item)
